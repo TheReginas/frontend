@@ -10,6 +10,7 @@ const SignUp = () => {
         <form>
         <input type = "text"
         name ="signup" placeholder='username'></input>
+        
         <input type = "text"
         name ="signup" placeholder='password'></input>
 
