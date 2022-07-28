@@ -8,6 +8,16 @@ import Navbar from '../../components/Navbar/Navbar'
 
 
 function App() {
+
+  // handleLogout = () => {
+  //   userService.logout();
+  //   this.setState({ user: null });
+  // }
+
+  // handleSignupOrLogin = () => {
+  //   this.setState({user: userService.getUser()});
+  // }
+
   return (  
     <>
     <header>
