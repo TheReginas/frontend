@@ -24,6 +24,12 @@ const progressbar = styled.nav`
     height: 15px;
     border-radius: 5px;
     animation: progressbar 1s linear forwards; 
+    @keyframes progressbar {
+        100%{
+            width:0%
+        }
+        
+    }
 `
 
 const progress = styled.nav`
