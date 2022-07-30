@@ -21,5 +21,5 @@ const NavBar = ({user, setUser}) => {
     </div>
   );
 };
-}
+
 export default Navbar;
