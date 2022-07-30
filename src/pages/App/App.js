@@ -1,23 +1,31 @@
 import './App.css';
+import React, { Component } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
-import SignUp from '../SignUp/SignUp';
+import SignUp from '../SignUp/SignUp.jsx';
 import Progress from '../Progress/Progress';
 import Navbar from '../../components/Navbar/Navbar'
+import userService from '../../utils/userService';
+
+class App extends Component {
+
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  }
+
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
+  }
+
+  handleLogin =()=>{
+    this.setState({user: userService.getUser()});
+  }
 
 
-function App() {
 
-  // handleLogout = () => {
-  //   userService.logout();
-  //   this.setState({ user: null });
-  // }
-
-  // handleSignupOrLogin = () => {
-  //   this.setState({user: userService.getUser()});
-  // }
-
+  render () {
   return (  
     <>
     <header>
@@ -27,9 +35,9 @@ function App() {
 
     <main>
     <Routes>
-      <Route path= '/login' element= { <Login /> } />
+      <Route path= '/login' element= { <Login handleSignup={this.handleLogin}/> } />
       <Route path= '/logs' element={ <Logs /> } />
-      <Route path='/signup' element={ <SignUp/>}/>
+      <Route path='/signup' element={ <SignUp handleLogin={this.handleSignup}/>}/>
       <Route path='/progress' element={ <Progress />}/>
     </Routes>
  
@@ -40,6 +48,7 @@ function App() {
 
     </>
   );
+  }
 }
 
 export default App;
