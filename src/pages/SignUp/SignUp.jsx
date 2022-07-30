@@ -1,33 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import SignupForm from '../../components/SignUp/SignupForm';
 
 
-const SignUp = () => {
-  return (
+class SignupPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {message: ''}
+  }
 
-    <div>
-        <h1>SignUpPage</h1>
-        <form>
-        <input type = "text"
-        name ="signup" placeholder='username'></input>
-        
-        <input type = "text"
-        name ="signup" placeholder='password'></input>
+  updateMessage = (msg) => {
+    this.setState({message: msg});
+  }
 
-        <input type = "text"
-        name ="signup" placeholder='confirm password'></input>
-
-        <input type = "text"
-        name ="login" placeholder='email address'></input>
-
-        <button type='submit'>Sign Up</button>
-
-        </form>
-       
-        <Link to='/login'>Login</Link>
-
-    </div>
-  )
+  render() {
+    return (
+      <div className='SignupPage'>
+        <SignupForm {...this.props} updateMessage={this.updateMessage} />
+        <p>{this.state.message}</p>
+      </div>
+    );
+  }
 }
 
-export default SignUp
+export default SignupPage;
