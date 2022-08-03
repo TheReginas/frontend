@@ -1,13 +1,15 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled, { withTheme } from 'styled-components'
 
 const ProgressContainer = styled.nav`
-    height: 100vh;
+    height: 20;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     background: #222;
+    margin: 50;
+    border-radius: 50;
 `
 const title  = styled.nav`
   font-weight: 400;
@@ -18,40 +20,28 @@ const title  = styled.nav`
   font-size: 16px;
 `
 
-const progressbar = styled.nav`
-   background: #30e31e;
-    width: 0%;
-    height: 15px;
-    border-radius: 5px;
-    animation: progressbar 1s linear forwards; 
-    @keyframes progressbar {
-        100%{
-            width:0%
-        }
-        
-    }
+const filler = styled.nav`
+   height: 100%;
+   width: ${completed}%;
+   background-Color: #1cca3d;
+   border-radius: inheriet;
+   text=aliign: right;
+   transititon: wodth 1s ease-in-out;
+
 `
 
 const progress = styled.nav`
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background:#222;
-    float: right;
-    margin-top: 15px;
-    margin-right: -20px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+   padding: 5;
+   color: white;
+   font-weight: bold;
 `
 
 
-function ProgressBar() {
-  return (
+const ProgressBar = (props) => {
+  const  {completed } = props;
+    return (
     <ProgressContainer>
-        <div class="progressbar"><h3 className='title'>Team's Progress</h3><span className='progress'>
+        <div class="filler"><h3 className='title'>Team's Progress</h3><span className='progress'> {`${completed}%`}
         </span></div></ProgressContainer>
   )
 }
