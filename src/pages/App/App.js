@@ -24,6 +24,13 @@ const addToTask = (log)=> {
 }
 
 
+  useEffect(()=>{
+    fetch('/api')
+    .then((res)=> res.json())
+    .then(logs => setLogs(logs))
+   
+  }, []);
+  
 
 
   

@@ -21,6 +21,11 @@ const Login = ({setUser}) => {
 
   return (
 
+    <div>
+      <div>
+            <label htmlFor='name'>Username</label>
+            <input type='text' name='name' id='name' onChange={handleChange}></input>
+            &nbsp;
 
     <div>
       <div>
@@ -34,7 +39,10 @@ const Login = ({setUser}) => {
        }}>Log in</button>
 
     </div>
+    </div>
+    </div>
   )
 }
+
 
 export default Login
