@@ -1,31 +1,24 @@
 import './App.css';
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
 import SignUp from '../SignUp/SignUp.jsx';
-import Progress from '../Progress/Progress';
 import Navbar from '../../components/Navbar/Navbar'
-import userService from '../../utils/userService';
-
-class App extends Component {
-
-  handleLogout = () => {
-    userService.logout();
-    this.setState({ user: null });
-  }
-
-  handleSignup = () => {
-    this.setState({user: userService.getUser()});
-  }
-
-  handleLogin =()=>{
-    this.setState({user: userService.getUser()});
-  }
 
 
+function App () {
+ const [logs, setLogs]= useState ([])
 
-  render () {
+  useEffect(()=>{
+    fetch('/api')
+    .then((res)=> res.json())
+    .then(logs => setLogs(logs))
+   
+  }, []);
+  
+
+
   return (  
     <>
     <header>
@@ -35,10 +28,9 @@ class App extends Component {
 
     <main>
     <Routes>
-      <Route path= '/login' element= { <Login handleSignup={this.handleLogin}/> } />
+      <Route path= '/login' element= { <Login /> } />
       <Route path= '/logs' element={ <Logs /> } />
-      <Route path='/signup' element={ <SignUp handleLogin={this.handleSignup}/>}/>
-      <Route path='/progress' element={ <Progress />}/>
+      <Route path='/signup' element={ <SignUp />}/>
     </Routes>
  
     </main>
@@ -49,6 +41,6 @@ class App extends Component {
     </>
   );
   }
-}
+
 
 export default App;
