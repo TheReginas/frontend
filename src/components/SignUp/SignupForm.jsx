@@ -1,77 +1,73 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import userService from '../../utils/userService';
+import React from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import userService from '../../utils/userService'
 
-class SignupForm extends Component {
+const SignupForm = (props) => {
+  const [formData, setFormData] = useState({
 
-  state = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConf: ''
-  };
+    username:'',
+    email:'',
+    password:'',
+    passwordConfirm:''
 
-  handleChange = (e) => {
-    this.props.updateMessage('');
-    this.setState({
-      // Using ES2015 Computed Property Names
-      [e.target.name]: e.target.value
-    });
+})
+
+let  handleChange = (event) =>{
+  props.updateMessage('');
+  setFormData({[event.target.name]: event.target.value})
+}
+
+let handleSubmit = async (event) => {
+  event.preventDefault();
+  try{
+    await userService.signup(formData)
+    props.handleSignuporLogin();
+    props.push('/logs')
+  }catch (err){
+    props.updateMesage(err.message)
+
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await userService.signup(this.state);
-      // Let <App> know a user has signed up!
-      this.props.handleSignupOrLogin();
-      // Successfully signed up - show GamePage
-      this.props.history.push('/');
-    } catch (err) {
-      // Invalid user data (probably duplicate email)
-      this.props.updateMessage(err.message);
-    }
+  let onSubmit = (event) => {
+    event.preventDefault
   }
+  
 
-  isFormInvalid() {
-    return !(this.state.name && this.state.email && this.state.password === this.state.passwordConf);
-  }
-
-  render() {
-    return (
-      <div>
+  return (
+    <div>
         <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
+        <form className="form-horizontal" onSubmit={handleSubmit} >
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Name" value={this.state.name} name="name" onChange={this.handleChange} />
+              <input type="text" className="form-control" placeholder="Name" vaule={username} name="name" onChange={handleChange} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={this.state.email} name="email" onChange={this.handleChange} />
+              <input type="email" className="form-control" placeholder="Email"  vale={email}name="email" onChange={handleChange} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={this.state.password} name="password" onChange={this.handleChange} />
+              <input type="password" className="form-control" placeholder="Password" value={password}name="password" onChange={handleChange} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" value={this.state.passwordConf} name="passwordConf" onChange={this.handleChange} />
+              <input type="password" className="form-control" placeholder="Confirm Password" vaule={passwordConfirm} name="passwordConf" onChange={handleChange} />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
+              <button className="btn btn-default" disabled={isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
               <Link to='/'>Cancel</Link>
             </div>
           </div>
         </form>
       </div>
-    );
-  }
+  
+  )
 }
-
+}
 export default SignupForm;

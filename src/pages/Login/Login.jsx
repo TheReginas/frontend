@@ -31,8 +31,10 @@ const Login = ({setUser}) => {
             <label htmlFor='name'>Password</label>
             <input type='text' name='password' id='password' onChange={handleChange}></input>
           </div>
+          <button onClick={()=>  { 
+           navigate('/logs')
+       }}>Log in</button>
 
-          <input type='submit' value='Log In' handleSubmit={handleSubmit}></input>
     </div>
   )
 }
