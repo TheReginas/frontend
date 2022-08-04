@@ -10,6 +10,19 @@ const Logs = ({addTask}) => {
       setInterval(() => setCompleted(Math.floor(Math.random()* 100) +1 ), 2000)
 
     }, []);
+const Logs = () =>  {
+        return (
+            <>
+            <Navbar />
+            <ProgressBar />
+            <h1>Team Logs</h1>
+            <div>
+                <h2>form goes here</h2>
+                {/* to see all, create, edit, & delete. */}
+            </div>
+            </>
+        );
+    }
 
   return (
     <>
