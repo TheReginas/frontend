@@ -1,5 +1,7 @@
-import React, { Component , useState, useEffect} from 'react';
-import styled from 'styled-components'
+import React  from 'react';
+//import styled from 'styled-components'
+import Navbar from '../../components/Navbar'
+import ProgressBar from '../../components/ProgressBar'
 
 
 
@@ -7,13 +9,7 @@ import styled from 'styled-components'
 //allow user to update,edit and delete log 
 //allow user to click into log ??
 
-class Logs extends Component {
-    render() {
-        const [completed, setCompleted] = useState(0);
-
-        useEffect(()=>{
-            setInterval(()=> setCompleted(Math.floor(Math.random() * 100) + 1), 2000);
-        }, []);
+const Logs = () =>  {
         return (
             <>
             <Navbar />
@@ -26,6 +22,5 @@ class Logs extends Component {
             </>
         );
     }
-}
 
 export default Logs;

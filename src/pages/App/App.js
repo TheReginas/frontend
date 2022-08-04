@@ -4,14 +4,14 @@ import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
 import SignUp from '../SignUp/SignUp';
 import Progress from '../Progress/Progress';
-import Navbar from '../../components/Navbar/Navbar'
+import NavBar from '../../components/Navbar';
 
 
 function App() {
   return (  
     <>
     <header>
-     <Navbar/>
+     <NavBar/>
       <h1>Work Well</h1>
     </header>
 
