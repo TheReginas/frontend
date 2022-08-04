@@ -26,8 +26,6 @@ const Login = ({setUser}) => {
       <div>
             <label htmlFor='name'>Username</label>
             <input type='text' name='name' id='name' onChange={handleChange}></input>
-            &nbsp;
-
             <label htmlFor='name'>Password</label>
             <input type='text' name='password' id='password' onChange={handleChange}></input>
           </div>
