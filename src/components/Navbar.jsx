@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const NavBar = (props) => {
+const Navbar = (props) => {
   let nav = props.user ?
   <div>
     <Link to='/progress' className='NavBar-link'>Progress</Link>
@@ -27,4 +27,4 @@ const NavBar = (props) => {
   );
 };
 
-export default NavBar;
+export default Navbar;
