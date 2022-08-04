@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Logs from './Logs'
 
-const LogAdd = (addTask) => {
+const LogAdd = ({addTask}) => {
     const navigate = useNavigate()
 
     const initialState = {
@@ -22,12 +23,13 @@ const LogAdd = (addTask) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData)
-        axios.put(`http://localhost:6001/logs/${id}`, formData )
+        axios.post(`http://localhost:6001/logs`, formData )
         .then(res =>  {
 
             setFormData(initialState)
             addTask(res.data)
-            navigate('/', { replace: true })
+            navigate('/logs', { replace: true }) 
+            console.log(res)
         })
 
     }
@@ -35,17 +37,24 @@ const LogAdd = (addTask) => {
   return (
 <> 
     <div>Add Task</div>
-
+ 
 
     <form onSubmit={handleSubmit}>
     <label htmlFor='name'>Task </label>
-    <input id='name' name='task' type='text' value={formData.taskName} onChange={handleChange} />
+    <input id='task' name='task' type='text'  onChange={handleChange} />
     <label htmlFor='name'>Work Notes </label>
-    <input id='description' name='description' type='text' value={formData.workNotes} onChange={handleChange} />
+    <input id='workNotes' name='description' type='text'  onChange={handleChange} />
     <label htmlFor='name'>Team Member</label>
-    <input id='memeber' name='member' type='text' value={formData.teamMember} onChange={handleChange}/>
+    <input id='teamMember' name='member' type='text'  onChange={handleChange}/>
     <input type='submit' value='Add' />
+    
 </form>
+    <h2> Completed task</h2>
+    <div>
+    {Logs.map((formData)=>{
+        return <div key={data}>{data}</div>
+    })}
+    </div>
 </>
   )
 }
