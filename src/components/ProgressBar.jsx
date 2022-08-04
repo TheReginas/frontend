@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback} from 'react'
 import styled from 'styled-components'
 import {Animated} from 'react-animated-css'
+import PropTypes from 'prop-types'
 
 const ProgressContainer = styled.nav`
     height
@@ -20,6 +21,19 @@ const Title  = styled.nav`
   color: white;
   font-size: 16px;
 `
+const progress = (props) => {
+  const { min, max } = props;
+}
+
+progress.propTypes = {
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number
+}
+progress.defaultProps = {
+min: 0,
+max: 100
+}
+
 const Filler = styled.nav`
    height: 100%;
    width: ${progress}%;
@@ -43,8 +57,8 @@ const ProgressBar = (props) => {
       progressDuration,
       indeterminateDuration,
       onCompletion, 
-      startAnimation,
-      stopAnimation
+      //startAnimation,
+      //stopAnimation
    } = props;
 
    const [timer] = useState(new Animated.Value(0));
@@ -54,6 +68,19 @@ const ProgressBar = (props) => {
      duration: indeterminateDuration,
      toValue: 1
    });
+
+   //const progress = (props) =>{
+     //const {min, max} = props;
+   //}
+
+   //progress.propTypes = {
+     //min: PropTypes.number.isRequired,
+     //max: PropTypes.number
+   //}
+   //progress.defaultProps = {
+     //min: 0,
+     //max: 100
+   //}
 
    useEffect(()=>{
      if (indeterminate || typeof progress === 'number'){
@@ -125,7 +152,7 @@ outputRange:[0.0001, 0.8, 0.0001]           })
 
     return (
     <ProgressContainer>
-        <Filler><Title>Team's Progress</Title><Progressbar> {`${progress}%`}
+        <Filler><Title>Team's Progress</Title><Progressbar> {`${progress =((min/max) * 100)}%`}
         </Progressbar></Filler></ProgressContainer>
   )
 }
