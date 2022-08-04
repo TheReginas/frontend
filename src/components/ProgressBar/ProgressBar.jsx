@@ -32,7 +32,9 @@ const Filler = styled.nav`
 const Progressbar = styled.nav`
    padding: 5;
    color: white;
-   font-weight: bold;
+   font: bold;
+   weight: 100%
+   
 `
 
 const ProgressBar = (props) => {
@@ -44,7 +46,8 @@ const ProgressBar = (props) => {
       indeterminateDuration,
       onCompletion, 
       startAnimation,
-      stopAnimation
+      stopAnimation,
+      styleAnimation 
    } 
 
    const [timer] = useState(new Animated.Value(0));
@@ -122,14 +125,20 @@ outputRange:[0.0001, 0.8, 0.0001]           })
      };
    };
 
+Animated.timing(width,{
+  duration: 200,
+  toValue: 0,
+  isInteraction: false
+}).start()
+    [indeterminateAnimation, width];
 
+  
     return (
     <ProgressContainer>
         <Filler><Title>Team's Progress</Title><Progressbar> {`${progress}%`}
         </Progressbar></Filler></ProgressContainer>
-  )
-}
-
-
+  
+    )
+    }
 
 export default ProgressBar
