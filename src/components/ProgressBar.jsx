@@ -12,7 +12,7 @@ const ProgressContainer = styled.nav`
     margin: 50;
     border-radius: 50;
 `
-const title  = styled.nav`
+const Title  = styled.nav`
   font-weight: 400;
   letter-spacing: 1px;
   margin-top:40px;
@@ -20,18 +20,16 @@ const title  = styled.nav`
   color: white;
   font-size: 16px;
 `
-
-const filler = styled.nav`
+const Filler = styled.nav`
    height: 100%;
    width: ${progress}%;
    background-Color: #1cca3d;
    border-radius: inheriet;
    text=aliign: right;
    transititon: wodth 1s ease-in-out;
-
 `
 
-const progress = styled.nav`
+const Progressbar = styled.nav`
    padding: 5;
    color: white;
    font-weight: bold;
@@ -44,12 +42,13 @@ const ProgressBar = (props) => {
       indeterminate,
       progressDuration,
       indeterminateDuration,
-      width,
-      onCompletion
+      onCompletion, 
+      startAnimation,
+      stopAnimation
    } = props;
 
    const [timer] = useState(new Animated.Value(0));
-   const [width] = useState(new Animated.Value(0));
+   const [bar] = useState(new Animated.Value(0));
 
    const indeterminateAnimation = Animated.timing(timer, {
      duration: indeterminateDuration,
@@ -69,7 +68,7 @@ const ProgressBar = (props) => {
        timer.setValue(0);
        Animated.loop(indeterminateAnimation).start();
      }else{
-       Animated.timing(width, {
+      Animated.timing(bar, {
          duration: animated ? progressDuration : 0,
          toValue: progress
        }). start(()=>{
@@ -83,7 +82,7 @@ const ProgressBar = (props) => {
      indeterminate,
      progressDuration,
      indeterminateDuration,
-     width,
+     bar,
      onCompletion,
      timer
    ]);
@@ -91,12 +90,12 @@ const ProgressBar = (props) => {
    const stopAnimation = useCallback(()=>{
 if (indeterminateAnimation) indeterminateAnimation.stop();
 
-Animated.timing(width,{
+Animated.timing(bar,{
   duration: 200,
   toValue: 0,
   isInteraction: false
 }).start();
-   }, [indeterminateAnimation, width]);
+   }, [indeterminateAnimation, bar]);
 
    const styleAnimation = () => {
      return indeterminate ? {
@@ -116,17 +115,21 @@ outputRange:[0.0001, 0.8, 0.0001]           })
        ]
      }
      : {
-       width: width.interpolate({
+       bar: bar.interpolate({
          inputRange: [0, 100],
          outputRange: ['0%', '100%']
        })
      };
    };
+
+
     return (
     <ProgressContainer>
-        <div class="filler"><h3 className='title'>Team's Progress</h3><span className='progress'> {`${progress}%`}
-        </span></div></ProgressContainer>
+        <Filler><Title>Team's Progress</Title><Progressbar> {`${progress}%`}
+        </Progressbar></Filler></ProgressContainer>
   )
 }
+
+
 
 export default ProgressBar

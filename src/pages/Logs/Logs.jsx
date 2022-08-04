@@ -8,8 +8,7 @@ const Logs = ({addTask}) => {
     const [completed, setCompleted] = useState(0);
     useEffect(() => {
       setInterval(() => setCompleted(Math.floor(Math.random()* 100) +1 ), 2000)
-
-    }, []);
+      
 
   return (
     <>
