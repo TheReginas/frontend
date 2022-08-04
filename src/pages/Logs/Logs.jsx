@@ -14,21 +14,10 @@ const Logs = ({addTask}) => {
   return (
     <>
    
-    <ProgressBar completed={completed}/>
+    <ProgressBar completed = {completed}/>
     <h1>Team Logs</h1>
-    
- 
-     
-    <form>
-        <label>Title</label>
-        <input type='text' name='title' placeholder='title'/>
-        <label>Work Notes</label>
-        <input type='text' name='description' placeholder='Work Notes'/>
-        <label>Team Member</label>
-        <input type='text' name='name' placeholder='team member'/>
-        <button>Save</button>
-    </form>
-    
+    <LogAdd addTask= {addTask}/>
+   
     
     </>
     
