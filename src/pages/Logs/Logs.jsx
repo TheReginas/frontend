@@ -13,7 +13,7 @@ const Logs = () =>  {
         return (
             <>
             <Navbar />
-            <ProgressBar completed={completed}/>
+            <ProgressBar />
             <h1>Team Logs</h1>
             <div>
                 <h2>form goes here</h2>
