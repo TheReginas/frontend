@@ -20,7 +20,20 @@ const Title  = styled.nav`
   color: white;
   font-size: 16px;
 `
+const Filler = styled.nav`
+   height: 100%;
+   width: ${progress}%;
+   background-Color: #1cca3d;
+   border-radius: inheriet;
+   text=aliign: right;
+   transititon: wodth 1s ease-in-out;
+`
 
+const Progressbar = styled.nav`
+   padding: 5;
+   color: white;
+   font-weight: bold;
+`
 
 const ProgressBar = (props) => {
   const props = {
@@ -112,18 +125,11 @@ outputRange:[0.0001, 0.8, 0.0001]           })
 
     return (
     <ProgressContainer>
-        <Filler><Title>Team's Progress</Title><span class='progress'> {`${progress}%`}
-        </span></Filler></ProgressContainer>
+        <Filler><Title>Team's Progress</Title><Progressbar> {`${progress}%`}
+        </Progressbar></Filler></ProgressContainer>
   )
 }
 
-const Filler = styled.nav`
-   height: 100%;
-   width: ${progress}%;
-   background-Color: #1cca3d;
-   border-radius: inheriet;
-   text=aliign: right;
-   transititon: wodth 1s ease-in-out;
-`
+
 
 export default ProgressBar
