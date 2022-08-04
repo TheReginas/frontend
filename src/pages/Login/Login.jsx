@@ -10,7 +10,7 @@ const Login = ({setUser}) => {
   }
 
   const handleSubmit = (e) => {
-    axios.post('http://localhost:3000/auth/login', formData)
+    axios.post('http://localhost:3000/login', formData)
     .then(res => {
       if (res.status === 200){
         setUser(res.data)
@@ -20,27 +20,22 @@ const Login = ({setUser}) => {
   }
 
   return (
-
     <div>
-      <div>
-            <label htmlFor='name'>Username</label>
-            <input type='text' name='name' id='name' onChange={handleChange}></input>
-            &nbsp;
+      
+      
+        <form onSubmit= {handleSubmit}> 
 
-    <div>
-      <div>
             <label htmlFor='name'>Username</label>
             <input type='text' name='name' id='name' onChange={handleChange}></input>
             <label htmlFor='name'>Password</label>
-            <input type='text' name='password' id='password' onChange={handleChange}></input>
-          </div>
-          <button onClick={()=>  { 
-           navigate('/logs')
-       }}>Log in</button>
+            <input type='password' name='password' id='password' onChange={handleChange}></input>
+            <input type='submit' value='Login'></input>
+         
 
+          </form>
     </div>
-    </div>
-    </div>
+   
+    
   )
 }
 

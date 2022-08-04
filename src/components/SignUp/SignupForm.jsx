@@ -1,73 +1,120 @@
+import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import userService from '../../utils/userService'
+import { Link, useNavigate } from 'react-router-dom'
 
-const SignupForm = (props) => {
-  const [formData, setFormData] = useState({
 
-    username:'',
-    email:'',
-    password:'',
-    passwordConfirm:''
+const SignupForm = () => {
 
-})
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+  
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-let  handleChange = (event) =>{
-  props.updateMessage('');
-  setFormData({[event.target.name]: event.target.value})
-}
 
-let handleSubmit = async (event) => {
-  event.preventDefault();
-  try{
-    await userService.signup(formData)
-    props.handleSignuporLogin();
-    props.push('/logs')
-  }catch (err){
-    props.updateMesage(err.message)
-
+  const handleUsername = (e) => {
+    setUsername(e.target.value)
+    setSubmitted(false)
+  }
+  
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
+    setSubmitted(false)
+  }
+  
+  const handlePasswordConfirm = (e) => {
+    setPasswordConfirm(e.target.value)
+    setSubmitted(false)
   }
 
-  let onSubmit = (event) => {
-    event.preventDefault
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
+    setSubmitted(false)
   }
+
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    axios.post('https://localhost:6001/login')
+      if(username === '' || email === '' || password === ''){
+        setError(true);
+        
+      }else{
+        setSubmitted(true);
+        setError(false);
+        navigate('/')
+      }
+    }
+  
+
+// success message
+const successMessage = () => {
+  return (
+  <div
+  className="success"
+  style={{
+  display: submitted ? '' : 'none',
+  }}>
+  <h1> {username} successfully registered!!</h1>
+  </div>
+  );
+  };
+  
+  // error message if error is true
+  const errorMessage = () => {
+  return (
+  <div
+  className="error"
+  style={{
+  display: error ? '' : 'none',
+  }}>
+  <h1>Please enter all the fields</h1>
+  </div>
+  );
+  };
   
 
   return (
+    <>
+    <div className="errorHandles">
+      {successMessage()}
+      {errorMessage()}
+    </div>
+
+
     <div>
-        <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={handleSubmit} >
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Name" vaule={username} name="name" onChange={handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email"  vale={email}name="email" onChange={handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={password}name="password" onChange={handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" vaule={passwordConfirm} name="passwordConf" onChange={handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
+        <header className="header-footer">Plesse Sign Up To Work Well</header>
+          <form>
+          <label className="label">Username</label>
+            <input onChange={handleUsername} className="input"
+            value={username} type="text" />
+
+          <label className="label">Email</label>
+            <input onChange={handleEmail} className="input"
+            value={email} type="email" />
+
+            <label className="label">Password</label>
+            <input onChange={handlePassword} className="input"
+            value={password} type="password" />
+
+          <label className="label">Confirm Password</label>
+            <input onChange={handlePasswordConfirm} className="input"
+            value={passwordConfirm} type="password" />
+
+            <button onClick={handleSubmit} className="btn" type="submit">
+            Submit
+            </button>
+          
               <Link to='/'>Cancel</Link>
-            </div>
-          </div>
+           
+         
         </form>
       </div>
-  
+    </>
   )
 }
-}
+
 export default SignupForm;

@@ -50,11 +50,7 @@ const LogAdd = ({addTask}) => {
     
 </form>
     <h2> Completed task</h2>
-    <div>
-    {Logs.map((formData)=>{
-        return <div key={data}>{data}</div>
-    })}
-    </div>
+    
 </>
   )
 }

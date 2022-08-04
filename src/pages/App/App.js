@@ -4,16 +4,16 @@ import { Route, Routes } from 'react-router-dom'
 import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
 import SignUp from '../SignUp/SignUp.jsx';
-import Navbar from '../../components/Navbar/Navbar'
 import LogAdd from '../Logs/LogAdd';
 import LogEdit from '../Logs/LogEdit';
+import Navbar from '../../Navbar/Navbar';
 
 
 function App () {
  const [logs, setLogs]= useState ([])
 
   useEffect(()=>{
-    fetch('http://localhost:6001')
+    fetch('http://localhost:6001/')
     .then((res)=> res.json())
     .then(logs => setLogs(logs))
    
@@ -37,7 +37,7 @@ const addToTask = (log)=> {
   return (  
     <>
     <header>
-     <NavBar/>
+    <Navbar/>
       <h1>Work Well</h1>
     </header>
 
