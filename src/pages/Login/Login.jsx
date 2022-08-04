@@ -1,71 +1,48 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-//import Modal from 'react-modal'
-import userService from '../../utils/userService'
+import React, {useState} from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
-class Login extends Component {
-
-    state={
-        email: '',
-        pw:''
-    }
-    handleChange = (e) => {
-    
-        this.setState({
-          [e.target.name]: e.target.value
-        })
-      }
-    
-      handleSubmit = async (e) => {
-       
-        e.preventDefault();
-      try {
-
-        await userService.login(this.state);
-        this.props.handleLogin()
-        this.props.history.push('/')
-      } catch (err) {
-       
-        //Modal goes here
-    }
-}
-
-render() {
-    return (
-    <>
-
-    <h1>Welcome to Work Well</h1>
-    <h2>Productivly Teaming</h2>
-
-
-
-        <div className="LoginPage">
-        <header className="header-footer">Log In</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={this.state.email} name="email" onChange={this.handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={this.state.pw} name="pw" onChange={this.handleChange} />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Log In</button>&nbsp;&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
-            </div>
-          </div>
-        </form>
-      </div>
-</>
-    
-    );
+const Login = ({setUser}) => {
+  const navigate= useNavigate()
+  const [formData, setFormData] = useState()
+  const handleChange = (e)=> {
+    setFormData({...formData, [e.target.id] : e.target.value})
   }
-}
 
+  const handleSubmit = (e) => {
+    axios.post('http://localhost:3000/auth/login', formData)
+    .then(res => {
+      if (res.status === 200){
+        setUser(res.data)
+        navigate('/')
+      }
+    })
+  }
+
+  return (
+
+    <div>
+      <div>
+            <label htmlFor='name'>Username</label>
+            <input type='text' name='name' id='name' onChange={handleChange}></input>
+            &nbsp;
+
+    <div>
+      <div>
+            <label htmlFor='name'>Username</label>
+            <input type='text' name='name' id='name' onChange={handleChange}></input>
+            <label htmlFor='name'>Password</label>
+            <input type='text' name='password' id='password' onChange={handleChange}></input>
+          </div>
+          <button onClick={()=>  { 
+           navigate('/logs')
+       }}>Log in</button>
+
+    </div>
+    </div>
+    </div>
+  )
+}
 
 
 export default Login
