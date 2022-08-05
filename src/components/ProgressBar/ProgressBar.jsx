@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback} from 'react'
 import styled from 'styled-components'
 import {Animated} from 'react-animated-css'
+//import { Transition} from //'react-transition-group'
 //import PropTypes from 'prop-types'
 
 const ProgressContainer = styled.nav`
@@ -26,7 +27,7 @@ const Title  = styled.nav`
 //max: 100
 //}
 
-function progress({progressCount}){
+function Progress({progressCount}){
   const [min, setProgress] =
   useState(progressCount);
   return(
@@ -41,7 +42,7 @@ function progress({progressCount}){
 }
 const Filler = styled.nav`
    height: 100%;
-   width: ${progress}%;
+   width: ${Progress}%;
    background-Color: #1cca3d;
    border-radius: inheriet;
    text=aliign: right;
@@ -56,8 +57,8 @@ const Progressbar = styled.nav`
 
 const ProgressBar = (props) => {
   props = {
-      progress,
-      animated,
+      Progress,
+      Animated,
       indeterminate,
       progressDuration,
       indeterminateDuration,
@@ -68,10 +69,14 @@ const ProgressBar = (props) => {
 
    const [timer] = useState(new Animated.Value(0));
    const [bar] = useState(new Animated.Value(0));
-  
+  const [indeterminate] = useState(new Animated.Value(0));
+  const [indeterminateDuration] = useState(new Animated.Value(0));
+  const [progressDuration] = useState(new Animated.Value(0));
+  const [onCompletion] = useState(new Animated.Value(0));
+
 
    const indeterminateAnimation = Animated.timing(timer, {
-     duration: indeterminateDuration,
+     duration: 10,
      toValue: 1
    });
 
@@ -89,12 +94,12 @@ const ProgressBar = (props) => {
    //}
 
    useEffect(()=>{
-     if (indeterminate || typeof progress === 'number'){
+     if (indeterminate || typeof Progress === 'number'){
        startAnimation();
      } else {
        stopAnimation();
      }
-   }, [indeterminate, progress, startAnimation, stopAnimation]);
+   }, [indeterminate, Progress, startAnimation, stopAnimation]);
 
    const startAnimation = useCallback(()=>{
      if (indeterminate){
@@ -102,16 +107,16 @@ const ProgressBar = (props) => {
        Animated.loop(indeterminateAnimation).start();
      }else{
       Animated.timing(bar, {
-         duration: animated ? progressDuration : 0,
-         toValue: progress
+         duration: Animated ? progressDuration : 0,
+         toValue: Progress
        }). start(()=>{
          onCompletion();
        });
      }
    },
    [
-     progress,
-     animated,
+     Progress,
+     Animated,
      indeterminate,
      progressDuration,
      indeterminateDuration,
@@ -130,35 +135,35 @@ Animated.timing(bar,{
 }).start();
    }, [indeterminateAnimation, bar]);
 
-   const styleAnimation = () => {
-     return indeterminate ? {
-       transform: [
-         {
-           translateX: timer.interpolate({
-             inputRange: [0, 0.5, 1],
-             outputRange: [-0.6 * 320, -0.5 * 0.8 * 320, 0.7 *320]
-           })
-         },
-         {
-           scaleX: timer.interpolate({
-             inputRange: [0, 0.5, 1]
-,
-outputRange:[0.0001, 0.8, 0.0001]           })
-         }
-       ]
-     }
-     : {
-       bar: bar.interpolate({
-         inputRange: [0, 100],
-         outputRange: ['0%', '100%']
-       })
-     };
-   };
+   //const styleAnimation = () => {
+     //return indeterminate ? {
+       //transform: [
+         //{
+           //translateX: timer.interpolate({
+             //inputRange: [0, 0.5, 1],
+             //outputRange: [-0.6 * 320, -0.5 * //0.8 * 320, 0.7 *320]
+           //})
+         //},
+         //{
+           //scaleX: timer.interpolate({
+             //inputRange: [0, 0.5, 1]
+//,
+//outputRange:[0.0001, 0.8, 0.0001]           })
+  //       }
+    //   ]
+     //}
+     //: {
+       //bar: bar.interpolate({
+         //inputRange: [0, 100],
+         //outputRange: ['0%', '100%']
+      // })
+     //};
+   //};
 
 
     return (
     <ProgressContainer>
-        <Filler><Title>Team's Progress</Title><Progressbar> {`${progress}%`}
+        <Filler><Title>Team's Progress</Title><Progressbar> {`${Progress}%`}
         </Progressbar></Filler></ProgressContainer>
   )
 }
