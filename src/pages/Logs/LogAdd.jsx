@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Logs from './Logs'
 
-const LogAdd = ({addTask}) => {
+
+const LogAdd = ({addTask, logs}) => {
     const navigate = useNavigate()
 
-    const initialState = {
+    const logFormData = {
         task: '',
         workNotes: '',
         teamMember: '',
     }
 
-    const [formData, setFormData] = useState(initialState)
+
+    const [formData, setFormData] = useState(logFormData)
 
     const handleChange = (e) => {
         console.log(e.target)
@@ -23,23 +24,23 @@ const LogAdd = ({addTask}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData)
-        axios.post(`http://localhost:6001/logs`, formData )
+        axios.post('http://localhost:6001/logs', formData )
         .then(res =>  {
-
-            setFormData(initialState)
+            console.log(res.data)
+            setFormData(logFormData)
             addTask(res.data)
-            navigate('/logs', { replace: true }) 
             console.log(res)
         })
-
+        
     }
 
   return (
-<> 
-    <div>Add Task</div>
- 
 
-    <form onSubmit={handleSubmit}>
+     <>
+      
+      <form onSubmit={handleSubmit}>
+    <div>Add Task</div>
+
     <label htmlFor='name'>Task </label>
     <input id='task' name='task' type='text'  onChange={handleChange} />
     <label htmlFor='name'>Work Notes </label>
@@ -47,12 +48,40 @@ const LogAdd = ({addTask}) => {
     <label htmlFor='name'>Team Member</label>
     <input id='teamMember' name='member' type='text'  onChange={handleChange}/>
     <input type='submit' value='Add' />
-    
-</form>
-    <h2> Completed task</h2>
-    
-</>
+    </form>
+
+<div>
+
+<h1>Task Log</h1>
+{/* maybe .map  or update the handlesubmit function */}
+
+<div className="table">
+      <table>
+      <tr>
+          <th>Task</th>
+          <th>Work Notes</th>
+          <th>Team Member</th>
+        </tr>
+        {logs?.map((formData, key) => {
+          return (
+            <tr key={key}>
+            <td>{formData.task}</td>
+            <td>{formData.workNotes}</td>
+            <td>{formData.teamMember}</td>
+            </tr>
+          )
+        })}
+
+      </table>
+
+
+
+</div>
+</div>
+
+</> 
+
   )
 }
 
-export default LogAdd
+export default LogAdd;

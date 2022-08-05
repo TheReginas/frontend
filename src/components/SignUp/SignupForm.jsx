@@ -10,9 +10,10 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('')
-  
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  
+  
 
 
   const handleUsername = (e) => {
