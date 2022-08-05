@@ -4,7 +4,7 @@ import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
 import SignUp from '../SignUp/SignUp';
 import Progress from '../Progress/Progress';
-import Navbar from '../../components/Navbar/Navbar'
+import Navbar from '../../components/Navbar/Navbar';
 
 
 
