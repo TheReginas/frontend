@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import ProgressBar2 from '../../components/ProgressBar/ProgressBar2';
 
 
 
 const Logs = () => {
-    const [completed, setCompleted] = useState(0);
-    useEffect(() => {
-      setInterval(() => setCompleted(Math.floor(Math.random()* 100) +1 ), 2000)
+    const [value, updateValue] = React.useState(0);
 
-    }, []);
-
+    React.useEffect(()=>{
+        const interval = setInterval(()=>{
+            updateValue(oldValue=>{
+                const newValue = oldValue +10;
+                if (newValue === 100){
+                    clearInterval(interval);
+                }
+                return newValue;
+            });
+        }, 1000);
+    }, []
+);
+   
   return (
     <>
    
-    <ProgressBar completed={completed}/>
+    <ProgressBar2 value={value}/>
     <h1>Team Logs</h1>
     <div className='container'>
         <button className='btn'> Add New Entry</button>
