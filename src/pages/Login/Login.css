@@ -5,3 +5,17 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .background{
+        background-color:#24a0db ;
+        background: fixed;
+        }  
+
+   .button {
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color:#c2c611 ;
+    font-family: Arial;  
+}
