@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback} from 'react'
 import styled from 'styled-components'
 import {Animated} from 'react-animated-css'
-//import { Transition} from //'react-transition-group'
-//import PropTypes from 'prop-types'
+import { Transition} from //'react-transition-group'
+import PropTypes from 'prop-types'
 
 const ProgressContainer = styled.nav`
     height
@@ -160,6 +160,13 @@ Animated.timing(bar,{
      //};
    //};
 
+// Animated.timing(width,{
+//   duration: 200,
+//   toValue: 0,
+//   isInteraction: false
+// }).start()
+//     [indeterminateAnimation, width];
+
 
     return (
     <ProgressContainer>
@@ -171,3 +178,4 @@ Animated.timing(bar,{
 
 
 export default ProgressBar
+
