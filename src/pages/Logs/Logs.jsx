@@ -1,13 +1,12 @@
-
-import React, {useState, useEffect} from 'react'
-import ProgressBar2 from '../../components/ProgressBar/ProgressBar2'
+import React, { useEffect, useState } from 'react'
+import ProgressBar2 from '../../components/ProgressBar/ProgressBar2';
 
 
 
 const Logs = () => {
-    const [value, updateValue] = React.useState(0);
+    const [value, updateValue] = useState(0);
 
-    React.useEffect(()=>{
+   useEffect(()=>{
         const interval = setInterval(()=>{
             updateValue(oldValue=>{
                 const newValue = oldValue +10;
