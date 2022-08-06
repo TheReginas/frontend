@@ -8,9 +8,13 @@ Kadija
 Anaiya
 Jenai
 
+Front-End Team: 
+ Kadija 
+ Jenai
+
 Project Details: 
- Front-End holds the compoments and pages for the navigation bar, Login, SignUp etc. 
- While also giving the users the ability to log and edit project information as they complete a development task. 
+ Front-End holds the compoments and pages for the navigation bar, Login, SignUp etc.
+ Once the user signs in they have the ability to log completed tasks and edit logs for any changes made with the task. 
 
 User stories
 As a user, I need to be able to check off Task Progress
