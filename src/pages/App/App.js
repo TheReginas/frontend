@@ -8,6 +8,8 @@ import LogAdd from '../Logs/LogAdd';
 import Main from '../MainView/Main';
 
 
+
+
 function App () {
  const [logs, setLogs]= useState ([])
 

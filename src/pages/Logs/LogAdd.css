@@ -1,0 +1,16 @@
+.AddTask {
+text-align: center; 
+font-style: oblique;
+color: black;
+}
+
+.CompletedTask{ 
+text-align: center;
+font-style: oblique;
+color: black;
+}
+
+.background {
+background-color:#2f3dd0 ;
+background: fixed;
+}
