@@ -1,10 +1,11 @@
 
-
+import '../Logs/Logs.css';
 import LogAdd from './LogAdd';
 
 
 
-const Logs = ({addTask, logs}) => {
+
+const Logs = ({addLog, logs, setLog, setDelete}) => {
   // const [completed, setCompleted] = useState(0);
   // useEffect(() => {
     //   setInterval(() => setCompleted(Math.floor(Math.random()* 100) +1 ), 2000)
@@ -15,7 +16,8 @@ const Logs = ({addTask, logs}) => {
    
     
     <h1>Team Logs</h1>
-    <LogAdd addTask= {addTask} logs={logs}/>
+    
+    <LogAdd addLog= {addLog}  logs={logs} setLog= {setLog} setDelete={setDelete}  />
 
     <div>
       

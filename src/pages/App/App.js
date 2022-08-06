@@ -19,7 +19,7 @@ function App () {
   }, []);
   
   
-const addToTask = (log)=> {
+const addToLog = (log)=> {
   setLogs([...logs, log])
 }
 
@@ -36,7 +36,8 @@ const addToTask = (log)=> {
     <Routes>
       <Route path='/' element={<Main/>}/>
       <Route path= '/login' element= { <Login /> } />
-      <Route path= '/logs' element={ <Logs addTask={addToTask} logs={logs}/> } />
+      <Route path= '/logs' element={ <Logs addLog={addToLog} logs={logs}/> } />
+      <Route path='/logs/:id' element={<Logs  setLogs={setLogs}/>}/>
       <Route path='/signup' element={ <SignUp />}/>
       <Route path='/newlog' element={<LogAdd  />} />
     </Routes>

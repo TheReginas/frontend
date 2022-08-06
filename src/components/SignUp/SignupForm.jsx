@@ -15,7 +15,7 @@ const SignupForm = () => {
   
   
 
-
+  
   const handleUsername = (e) => {
     setUsername(e.target.value)
     setSubmitted(false)
@@ -46,7 +46,7 @@ const SignupForm = () => {
       }else{
         setSubmitted(true);
         setError(false);
-        navigate('/')
+        navigate('/logs')
       }
     }
   

@@ -14,7 +14,7 @@ const Login = ({setUser}) => {
     .then(res => {
       if (res.status === 200){
         setUser(res.data)
-        navigate('/')
+        navigate('/logs')
       }
     })
   }
