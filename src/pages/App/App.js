@@ -3,10 +3,17 @@ import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
+<<<<<<< HEAD
 import SignUp from '../SignUp/SignUp.jsx';
 import Navbar from '../../components/Navbar/Navbar'
 import LogAdd from '../Logs/LogAdd';
 import LogEdit from '../Logs/LogEdit';
+=======
+import SignUp from '../SignUp/SignUp';
+import Progress from '../Progress/Progress';
+import Navbar from '../../components/Navbar/Navbar';
+
+>>>>>>> JEC-Branch
 
 
 function App () {
