@@ -1,0 +1,36 @@
+<<<<<<< HEAD
+ .h1 {
+ text-align: center; 
+ font-style: oblique;
+ color: black;
+ }
+
+ .background{
+ background-color:#24a0db ;
+ background: fixed;
+ }
+
+
+ .button {
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color:#c2c611 ;
+    font-family: Arial;  
+    }
+
+ 
+=======
+.h1 {
+text-align: center; 
+font-style: oblique;
+color: black;
+padding: 0.5em;
+}
+
+.background {
+    background-color: #629d76;
+    background: fixed;
+}
+>>>>>>> JEC-Branch

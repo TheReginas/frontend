@@ -4,50 +4,44 @@ import { Route, Routes } from 'react-router-dom'
 import Login from '../Login/Login';
 import Logs from '../Logs/Logs';
 import SignUp from '../SignUp/SignUp.jsx';
-import Navbar from '../../components/Navbar/Navbar'
 import LogAdd from '../Logs/LogAdd';
-import LogEdit from '../Logs/LogEdit';
+import Main from '../MainView/Main';
+
+
 
 
 function App () {
  const [logs, setLogs]= useState ([])
 
   useEffect(()=>{
-    fetch('http://localhost:6001')
+    fetch('http://localhost:6001/logs')
     .then((res)=> res.json())
-    .then(logs => setLogs(logs))
+    .then(log => setLogs(log))
    
   }, []);
   
-const addToTask = (log)=> {
+  
+const addToLog = (log)=> {
   setLogs([...logs, log])
 }
 
 
-  useEffect(()=>{
-    fetch('/api')
-    .then((res)=> res.json())
-    .then(logs => setLogs(logs))
-   
-  }, []);
+  
   
 
 
   
   return (  
     <>
-    <header>
-     <NavBar/>
-      <h1>Work Well</h1>
-    </header>
-
+    
     <main>
     <Routes>
+      <Route path='/' element={<Main/>}/>
       <Route path= '/login' element= { <Login /> } />
-      <Route path= '/logs' element={ <Logs addTask={addToTask}/> } />
+      <Route path= '/logs' element={ <Logs addLog={addToLog} logs={logs}/> } />
+      <Route path='/logs/:id' element={<Logs  setLogs={setLogs}/>}/>
       <Route path='/signup' element={ <SignUp />}/>
       <Route path='/newlog' element={<LogAdd  />} />
-      <Route path='/log/edit/:id/' element={<LogEdit/>}/>
     </Routes>
  
     </main>
